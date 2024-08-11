@@ -25,19 +25,28 @@ public class KeyLogger
 
     private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
+    private bool running;
+
     public KeyLogger()
     {
         proc = HookCallback;
     }
 
+    public bool IsRunning()
+    {
+        return running;
+    }
+
     public void Start()
     {
         hookId = SetHook(proc);
+        running = true;
     }
 
     public void Stop()
     {
         UnhookWindowsHookEx(hookId);
+        running = false;
     }
 
     private IntPtr SetHook(LowLevelKeyboardProc proc)

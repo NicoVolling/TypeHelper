@@ -61,6 +61,9 @@ partial class Form1
         pnl_autocorrect = new Panel();
         nud_autocorrect = new NumericUpDown();
         label1 = new Label();
+        panel4 = new Panel();
+        lbl_startstop = new Label();
+        btn_start_stop = new Button();
         pnl_1.SuspendLayout();
         panel2.SuspendLayout();
         pnl_2.SuspendLayout();
@@ -70,6 +73,7 @@ partial class Form1
         panel9.SuspendLayout();
         pnl_autocorrect.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)nud_autocorrect).BeginInit();
+        panel4.SuspendLayout();
         SuspendLayout();
         // 
         // pnl_1
@@ -239,7 +243,7 @@ partial class Form1
         // label2
         // 
         label2.Dock = DockStyle.Bottom;
-        label2.Location = new Point(6, 578);
+        label2.Location = new Point(6, 560);
         label2.Name = "label2";
         label2.Size = new Size(553, 23);
         label2.TabIndex = 0;
@@ -321,7 +325,7 @@ partial class Form1
         panel9.BackColor = Color.FromArgb(64, 64, 64);
         panel9.Controls.Add(lbl_typedword);
         panel9.Dock = DockStyle.Bottom;
-        panel9.Location = new Point(6, 601);
+        panel9.Location = new Point(6, 583);
         panel9.Name = "panel9";
         panel9.Padding = new Padding(3);
         panel9.Size = new Size(553, 49);
@@ -354,7 +358,7 @@ partial class Form1
         // 
         lbl_disclaimer_body.Dock = DockStyle.Bottom;
         lbl_disclaimer_body.ForeColor = Color.Maroon;
-        lbl_disclaimer_body.Location = new Point(6, 482);
+        lbl_disclaimer_body.Location = new Point(6, 464);
         lbl_disclaimer_body.Name = "lbl_disclaimer_body";
         lbl_disclaimer_body.Size = new Size(553, 96);
         lbl_disclaimer_body.TabIndex = 8;
@@ -365,7 +369,7 @@ partial class Form1
         lbl_disclaimer_header.Dock = DockStyle.Bottom;
         lbl_disclaimer_header.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         lbl_disclaimer_header.ForeColor = Color.Maroon;
-        lbl_disclaimer_header.Location = new Point(6, 459);
+        lbl_disclaimer_header.Location = new Point(6, 441);
         lbl_disclaimer_header.Name = "lbl_disclaimer_header";
         lbl_disclaimer_header.Size = new Size(553, 23);
         lbl_disclaimer_header.TabIndex = 9;
@@ -427,12 +431,47 @@ partial class Form1
         label1.Text = "Maximale Abweichung (%) bei Autokorrektur:";
         label1.TextAlign = ContentAlignment.TopRight;
         // 
+        // panel4
+        // 
+        panel4.Controls.Add(lbl_startstop);
+        panel4.Controls.Add(btn_start_stop);
+        panel4.Dock = DockStyle.Bottom;
+        panel4.Location = new Point(6, 632);
+        panel4.Name = "panel4";
+        panel4.Size = new Size(553, 34);
+        panel4.TabIndex = 13;
+        // 
+        // lbl_startstop
+        // 
+        lbl_startstop.BackColor = Color.FromArgb(128, 255, 128);
+        lbl_startstop.Dock = DockStyle.Fill;
+        lbl_startstop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lbl_startstop.Location = new Point(324, 0);
+        lbl_startstop.Name = "lbl_startstop";
+        lbl_startstop.Size = new Size(229, 34);
+        lbl_startstop.TabIndex = 1;
+        lbl_startstop.Text = "Tastatur-Aufnahme: AN";
+        lbl_startstop.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // btn_start_stop
+        // 
+        btn_start_stop.Cursor = Cursors.Hand;
+        btn_start_stop.Dock = DockStyle.Left;
+        btn_start_stop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        btn_start_stop.Location = new Point(0, 0);
+        btn_start_stop.Name = "btn_start_stop";
+        btn_start_stop.Size = new Size(324, 34);
+        btn_start_stop.TabIndex = 0;
+        btn_start_stop.Text = "Tastatur-Aufnahme Starten / Stoppen";
+        btn_start_stop.UseVisualStyleBackColor = true;
+        btn_start_stop.Click += btn_start_stop_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
-        ClientSize = new Size(565, 656);
+        ClientSize = new Size(565, 672);
         Controls.Add(cb_disclaimer);
         Controls.Add(pnl_autocorrect);
         Controls.Add(cb_autocorrect);
@@ -447,6 +486,7 @@ partial class Form1
         Controls.Add(pnl_2);
         Controls.Add(panel1);
         Controls.Add(pnl_1);
+        Controls.Add(panel4);
         FormBorderStyle = FormBorderStyle.SizableToolWindow;
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
@@ -467,6 +507,7 @@ partial class Form1
         panel9.ResumeLayout(false);
         pnl_autocorrect.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)nud_autocorrect).EndInit();
+        panel4.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -504,4 +545,7 @@ partial class Form1
     private Panel pnl_autocorrect;
     private NumericUpDown nud_autocorrect;
     private Label label1;
+    private Panel panel4;
+    private Label lbl_startstop;
+    private Button btn_start_stop;
 }

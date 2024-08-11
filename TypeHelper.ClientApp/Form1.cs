@@ -203,4 +203,20 @@ public partial class Form1 : Form
     {
         pnl_autocorrect.Visible = cb_autocorrect.Checked;
     }
+
+    private void btn_start_stop_Click(object sender, EventArgs e)
+    {
+        if (KeyLogger.IsRunning())
+        {
+            KeyLogger.Stop();
+            lbl_startstop.Text = "Tastatur-Aufnahme: AUS";
+            lbl_startstop.BackColor = Color.FromArgb(255, 128, 128);
+        }
+        else
+        {
+            KeyLogger.Start();
+            lbl_startstop.Text = "Tastatur-Aufnahme: AN";
+            lbl_startstop.BackColor = Color.FromArgb(128, 255, 128);
+        }
+    }
 }
