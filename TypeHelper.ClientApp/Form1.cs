@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Drawing.Design;
 using TypeHelper.WinApi;
 using TypeHelper.Words;
@@ -31,7 +33,8 @@ public partial class Form1 : Form
 
         WordListManager.ProcessWords();
 
-        KeyLogger.KeyPressed += (s, e) => WordManager.KeyPressed(e);
+        KeyLogger.OnKeyPressed += WordManager.KeyPressed;
+        KeyLogger.OnSpecialKeyPressed += WordManager.SpecialKeyPressed;
         WordManager.WordChanged += (s, e) => { try { this.Invoke(() => WordChanged(e)); } catch { } };
         WordManager.SlotSelected += (s, e) => { try { this.Invoke(() => SlotSelected(e)); } catch { } };
         WordManager.EvaluateAutocorrect = () =>
@@ -89,14 +92,15 @@ public partial class Form1 : Form
     private void WordChanged(string Word)
     {
         this.Word = Word;
-        this.lbl_typedword.Text = Word.Length > 0 ? Word[0] + (Word.Length > 1 ? Word.ToLower().Substring(1) : string.Empty) : string.Empty;
+        this.lbl_typedword.Text = Word;
 
         FoundWord1 = null;
         FoundWord2 = null;
         FoundWord3 = null;
 
-        if (Word.Length > 2)
+        if (Word.Length > 2 && Word.Length < 25)
         {
+            DateTime dt = DateTime.Now;
             IOrderedEnumerable<KeyValuePair<Word, int>> dictDistances = CalculateLevenshteinDistances(WordListManager.GetWords(), Word, 20).OrderBy(o => o.Value);
 
             if (dictDistances.Count() > 0)
@@ -113,6 +117,8 @@ public partial class Form1 : Form
             {
                 FoundWord3 = dictDistances.Skip(2).First().Key;
             }
+            DateTime dt2 = DateTime.Now;
+            Debug.WriteLine(dt2 - dt);
         }
 
         ChangePanel(pnl_1, lbl_1_main, lbl_1_category, lbl_1_explanation, FoundWord1);
@@ -122,20 +128,19 @@ public partial class Form1 : Form
 
     private Dictionary<Word, int> CalculateLevenshteinDistances(IEnumerable<Word> words, string target, int maxDistance)
     {
-        var result = new Dictionary<Word, int>();
+        var result = new ConcurrentDictionary<Word, int>();
 
-        foreach (var word in words)
+        Parallel.ForEach(words, word =>
         {
             int distance = Levenshtein.LevenshteinDistance(word.Value, target, maxDistance);
 
-            // Nur Wörter aufnehmen, deren Distanz kleiner oder gleich maxDistance ist
             if (distance <= maxDistance)
             {
                 result[word] = distance;
             }
-        }
+        });
 
-        return result;
+        return result.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
     private void ChangePanel(Panel panel, Label lbl_main, Label lbl_category, Label lbl_explanation, Word? Word)

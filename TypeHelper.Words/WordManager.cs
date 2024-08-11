@@ -22,26 +22,34 @@ public class WordManager
 
     public Func<bool> EvaluateAutocorrect = () => false;
 
-    public void KeyPressed(Int32 KeyCode)
+    public void KeyPressed(char Char)
     {
         if (!changeWord)
         {
             return;
         }
 
-        Keys key = (Keys)KeyCode;
+        HandleCharacterInput(Char);
 
-        if (IsBackKey(key))
+        WordChanged?.Invoke(this, string.Concat(currentWord));
+
+        if (EvaluateAutocorrect.Invoke())
+        {
+            StartTextManipulation(1);
+        }
+    }
+
+    public void SpecialKeyPressed(Keys Key)
+    {
+        if (HandleNavigationKey(Key)) { }
+        else if (HandleSpecialCharKey(Key)) { }
+        else if (IsBackKey(Key))
         {
             HandleBackKey();
         }
-        else if (IsManipulationKey(key) is byte slot && slot != 0)
+        else if (IsManipulationKey(Key) is byte slot && slot != 0)
         {
             StartTextManipulation(slot);
-        }
-        else
-        {
-            HandleCharacterInput(KeyCode);
         }
 
         WordChanged?.Invoke(this, string.Concat(currentWord));
@@ -50,6 +58,21 @@ public class WordManager
         {
             StartTextManipulation(1);
         }
+    }
+
+    private bool HandleSpecialCharKey(Keys Key)
+    {
+        if (Key == Keys.Space)
+        {
+            HandleCharacterInput(' ');
+            return true;
+        }
+        else if (Key == Keys.OemMinus)
+        {
+            HandleCharacterInput('-');
+            return true;
+        }
+        return false;
     }
 
     private bool IsBackKey(Keys key)
@@ -102,57 +125,29 @@ public class WordManager
         }
     }
 
-    private void HandleCharacterInput(int keyCode)
+    private void HandleCharacterInput(char Char)
     {
-        char chr = ConvertKeyCodeToChar(keyCode);
-
-        if (char.IsLetterOrDigit(chr) || chr == ' ' || chr == '-')
-        {
-            InsertCharacter(chr);
-        }
-        else
-        {
-            HandleSpecialKeys((Keys)keyCode);
-        }
+        InsertCharacter(Char);
     }
 
-    private char ConvertKeyCodeToChar(int keyCode)
-    {
-        return keyCode switch
-        {
-            222 => 'Ä',
-            186 => 'Ü',
-            192 => 'Ö',
-            219 => 'ß',
-            96 => '0',
-            97 => '1',
-            98 => '2',
-            99 => '3',
-            100 => '4',
-            101 => '5',
-            102 => '6',
-            103 => '7',
-            104 => '8',
-            105 => '9',
-            189 => '-',
-            _ => (char)keyCode
-        };
-    }
-
-    private void HandleSpecialKeys(Keys key)
+    private bool HandleNavigationKey(Keys key)
     {
         if (key == Keys.Left)
         {
             MoveCursorLeft();
+            return true;
         }
         else if (key == Keys.Right)
         {
             MoveCursorRight();
+            return true;
         }
         else if (IsResetKey(key))
         {
             ResetCurrentWord();
+            return true;
         }
+        return false;
     }
 
     private void MoveCursorLeft()
