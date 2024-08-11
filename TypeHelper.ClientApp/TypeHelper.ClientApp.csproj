@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>02.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="02.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TypeHelper.WinApi\TypeHelper.WinApi.csproj" />

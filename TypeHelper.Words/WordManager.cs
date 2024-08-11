@@ -22,6 +22,8 @@ public class WordManager
 
     public Func<bool> EvaluateAutocorrect = () => false;
 
+    public bool OneWordMode { get; set; }
+
     public void KeyPressed(char Char)
     {
         if (!changeWord)
@@ -169,11 +171,12 @@ public class WordManager
     private bool IsResetKey(Keys key)
     {
         var resetKeys = new List<Keys>
-    {
-        Keys.Up, Keys.Down, /*Keys.Space,*/ Keys.Insert,
-        Keys.Delete, Keys.Tab, Keys.Oemcomma,
-        Keys.OemPeriod, Keys.Enter
-    };
+        {
+            Keys.Up, Keys.Down, /*Keys.Space,*/ Keys.Insert,
+            Keys.Delete, Keys.Tab, Keys.Oemcomma,
+            Keys.OemPeriod, Keys.Enter
+        };
+        if (OneWordMode) { resetKeys.Add(Keys.Space); }
         return resetKeys.Contains(key);
     }
 

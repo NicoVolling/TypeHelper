@@ -13,6 +13,7 @@ public class WordListManager
     private static string WordList_Path = "";
 
     private IEnumerable<Word> AllWords = new List<Word>();
+    private IEnumerable<Word> AllZipCodes = new List<Word>();
 
     public WordListManager()
     {
@@ -61,7 +62,13 @@ public class WordListManager
                 wordlists.AddRange(wordlist);
             }
         }
+        AllZipCodes = zipDictionary;
         AllWords = CombineAndGroupWords(zipDictionary, wordlists);
+    }
+
+    public IEnumerable<Word> GetZipCodes()
+    {
+        return AllZipCodes;
     }
 
     public IEnumerable<Word> GetWords()

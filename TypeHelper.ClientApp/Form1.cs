@@ -176,6 +176,7 @@ public partial class Form1 : Form
             "Medikament" => Color.Green,
             "Fachbegriff" => Color.Red,
             "Baustein" => Color.Purple,
+            "Telefonnummer" => Color.Orange,
             _ => Color.Blue
         };
     }
@@ -218,5 +219,102 @@ public partial class Form1 : Form
             lbl_startstop.Text = "Tastatur-Aufnahme: AN";
             lbl_startstop.BackColor = Color.FromArgb(128, 255, 128);
         }
+    }
+
+    private void cb_onewordmode_CheckedChanged(object sender, EventArgs e)
+    {
+        WordManager.OneWordMode = cb_onewordmode.Checked;
+    }
+
+    private void btn_phone_Click(object sender, EventArgs e)
+    {
+        ShowAllOfCategory("Telefonnummer");
+    }
+
+    private Dictionary<string, Form> CategoryForms = new();
+
+    private void ShowAllOfCategory(string Category, bool ShowExplanation = true)
+    {
+        if (CategoryForms.ContainsKey(Category) && CategoryForms[Category] is Form _form && !_form.IsDisposed)
+        {
+            _form.Show();
+        }
+        else
+        {
+            Form form = new Form();
+            form.AutoScroll = true;
+            form.TopMost = true;
+            form.Width = 800;
+            form.Height = 600;
+            form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            form.MaximizeBox = false;
+            form.Text = Category;
+            form.Padding = new Padding(6);
+
+            IEnumerable<Word> words;
+            if (Category == "PLZ")
+            {
+                words = WordListManager.GetZipCodes().OrderByDescending(o => o.Category).ThenByDescending(o => o.Explanation).ThenByDescending(o => o.Value);
+            }
+            else
+            {
+                words = WordListManager.GetWords().Where(o => o.Category == Category).OrderByDescending(o => o.Value);
+            }
+
+            foreach (Word word in words)
+            {
+                Panel pnl = new();
+                pnl.Dock = DockStyle.Top;
+                pnl.Height = 35;
+                pnl.Padding = new Padding(1);
+                pnl.BackColor = GetColorByCategory(Category);
+
+                Label lbl = new();
+                lbl.AutoSize = false;
+                lbl.Dock = ShowExplanation ? DockStyle.Left : DockStyle.Fill;
+                lbl.Text = word.Value + (ShowExplanation ? ": " : "");
+                lbl.TextAlign = ShowExplanation ? ContentAlignment.MiddleRight : ContentAlignment.MiddleLeft;
+                lbl.Width = 250;
+                lbl.BackColor = Color.White;
+                lbl.Font = new Font(lbl.Font.FontFamily, 12, FontStyle.Bold);
+
+                Label lbl2 = new();
+                lbl2.AutoSize = false;
+                lbl2.Dock = DockStyle.Fill;
+                lbl2.Text = word.Explanation;
+                lbl2.TextAlign = ContentAlignment.MiddleLeft;
+                lbl2.BackColor = Color.White;
+
+                if (ShowExplanation) { pnl.Controls.Add(lbl2); }
+                pnl.Controls.Add(lbl);
+
+                form.Controls.Add(new Panel() { Dock = DockStyle.Top, Height = 6, });
+                form.Controls.Add(pnl);
+            }
+
+            CategoryForms[Category] = form;
+
+            form.Show();
+        }
+    }
+
+    private void btn_medikamente_Click(object sender, EventArgs e)
+    {
+        ShowAllOfCategory("Medikament");
+    }
+
+    private void btn_fachbegriffe_Click(object sender, EventArgs e)
+    {
+        ShowAllOfCategory("Fachbegriff");
+    }
+
+    private void btn_plz_Click(object sender, EventArgs e)
+    {
+        ShowAllOfCategory("PLZ");
+    }
+
+    private void btn_bausteine_Click(object sender, EventArgs e)
+    {
+        ShowAllOfCategory("Baustein", false);
     }
 }

@@ -64,6 +64,12 @@ partial class Form1
         panel4 = new Panel();
         lbl_startstop = new Label();
         btn_start_stop = new Button();
+        cb_onewordmode = new CheckBox();
+        btn_phone = new Button();
+        btn_medikamente = new Button();
+        btn_fachbegriffe = new Button();
+        btn_plz = new Button();
+        btn_bausteine = new Button();
         pnl_1.SuspendLayout();
         panel2.SuspendLayout();
         pnl_2.SuspendLayout();
@@ -243,7 +249,7 @@ partial class Form1
         // label2
         // 
         label2.Dock = DockStyle.Bottom;
-        label2.Location = new Point(6, 560);
+        label2.Location = new Point(6, 628);
         label2.Name = "label2";
         label2.Size = new Size(553, 23);
         label2.TabIndex = 0;
@@ -325,7 +331,7 @@ partial class Form1
         panel9.BackColor = Color.FromArgb(64, 64, 64);
         panel9.Controls.Add(lbl_typedword);
         panel9.Dock = DockStyle.Bottom;
-        panel9.Location = new Point(6, 583);
+        panel9.Location = new Point(6, 651);
         panel9.Name = "panel9";
         panel9.Padding = new Padding(3);
         panel9.Size = new Size(553, 49);
@@ -358,7 +364,7 @@ partial class Form1
         // 
         lbl_disclaimer_body.Dock = DockStyle.Bottom;
         lbl_disclaimer_body.ForeColor = Color.Maroon;
-        lbl_disclaimer_body.Location = new Point(6, 464);
+        lbl_disclaimer_body.Location = new Point(6, 532);
         lbl_disclaimer_body.Name = "lbl_disclaimer_body";
         lbl_disclaimer_body.Size = new Size(553, 96);
         lbl_disclaimer_body.TabIndex = 8;
@@ -369,7 +375,7 @@ partial class Form1
         lbl_disclaimer_header.Dock = DockStyle.Bottom;
         lbl_disclaimer_header.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         lbl_disclaimer_header.ForeColor = Color.Maroon;
-        lbl_disclaimer_header.Location = new Point(6, 441);
+        lbl_disclaimer_header.Location = new Point(6, 509);
         lbl_disclaimer_header.Name = "lbl_disclaimer_header";
         lbl_disclaimer_header.Size = new Size(553, 23);
         lbl_disclaimer_header.TabIndex = 9;
@@ -380,7 +386,7 @@ partial class Form1
         // 
         cb_disclaimer.Dock = DockStyle.Top;
         cb_disclaimer.ForeColor = Color.Red;
-        cb_disclaimer.Location = new Point(6, 419);
+        cb_disclaimer.Location = new Point(6, 443);
         cb_disclaimer.Name = "cb_disclaimer";
         cb_disclaimer.Size = new Size(553, 24);
         cb_disclaimer.TabIndex = 10;
@@ -436,7 +442,7 @@ partial class Form1
         panel4.Controls.Add(lbl_startstop);
         panel4.Controls.Add(btn_start_stop);
         panel4.Dock = DockStyle.Bottom;
-        panel4.Location = new Point(6, 632);
+        panel4.Location = new Point(6, 700);
         panel4.Name = "panel4";
         panel4.Size = new Size(553, 34);
         panel4.TabIndex = 13;
@@ -466,13 +472,86 @@ partial class Form1
         btn_start_stop.UseVisualStyleBackColor = true;
         btn_start_stop.Click += btn_start_stop_Click;
         // 
+        // cb_onewordmode
+        // 
+        cb_onewordmode.Dock = DockStyle.Top;
+        cb_onewordmode.Location = new Point(6, 419);
+        cb_onewordmode.Name = "cb_onewordmode";
+        cb_onewordmode.Size = new Size(553, 24);
+        cb_onewordmode.TabIndex = 14;
+        cb_onewordmode.Text = "Ein-Wort-Modus";
+        cb_onewordmode.UseVisualStyleBackColor = true;
+        cb_onewordmode.CheckedChanged += cb_onewordmode_CheckedChanged;
+        // 
+        // btn_phone
+        // 
+        btn_phone.Cursor = Cursors.Hand;
+        btn_phone.Location = new Point(9, 483);
+        btn_phone.Name = "btn_phone";
+        btn_phone.Size = new Size(116, 23);
+        btn_phone.TabIndex = 15;
+        btn_phone.Text = "Telefonnummern";
+        btn_phone.UseVisualStyleBackColor = true;
+        btn_phone.Click += btn_phone_Click;
+        // 
+        // btn_medikamente
+        // 
+        btn_medikamente.Cursor = Cursors.Hand;
+        btn_medikamente.Location = new Point(131, 483);
+        btn_medikamente.Name = "btn_medikamente";
+        btn_medikamente.Size = new Size(101, 23);
+        btn_medikamente.TabIndex = 16;
+        btn_medikamente.Text = "Medikamente";
+        btn_medikamente.UseVisualStyleBackColor = true;
+        btn_medikamente.Click += btn_medikamente_Click;
+        // 
+        // btn_fachbegriffe
+        // 
+        btn_fachbegriffe.Cursor = Cursors.Hand;
+        btn_fachbegriffe.Location = new Point(238, 483);
+        btn_fachbegriffe.Name = "btn_fachbegriffe";
+        btn_fachbegriffe.Size = new Size(92, 23);
+        btn_fachbegriffe.TabIndex = 17;
+        btn_fachbegriffe.Text = "Fachbegriffe";
+        btn_fachbegriffe.UseVisualStyleBackColor = true;
+        btn_fachbegriffe.Click += btn_fachbegriffe_Click;
+        // 
+        // btn_plz
+        // 
+        btn_plz.Cursor = Cursors.Hand;
+        btn_plz.Location = new Point(443, 483);
+        btn_plz.Name = "btn_plz";
+        btn_plz.Size = new Size(101, 23);
+        btn_plz.TabIndex = 18;
+        btn_plz.Text = "Postleitzahlen";
+        btn_plz.UseVisualStyleBackColor = true;
+        btn_plz.Visible = false;
+        btn_plz.Click += btn_plz_Click;
+        // 
+        // btn_bausteine
+        // 
+        btn_bausteine.Cursor = Cursors.Hand;
+        btn_bausteine.Location = new Point(336, 483);
+        btn_bausteine.Name = "btn_bausteine";
+        btn_bausteine.Size = new Size(101, 23);
+        btn_bausteine.TabIndex = 18;
+        btn_bausteine.Text = "Bausteine";
+        btn_bausteine.UseVisualStyleBackColor = true;
+        btn_bausteine.Click += btn_bausteine_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
-        ClientSize = new Size(565, 672);
+        ClientSize = new Size(565, 740);
+        Controls.Add(btn_bausteine);
+        Controls.Add(btn_plz);
+        Controls.Add(btn_fachbegriffe);
+        Controls.Add(btn_medikamente);
+        Controls.Add(btn_phone);
         Controls.Add(cb_disclaimer);
+        Controls.Add(cb_onewordmode);
         Controls.Add(pnl_autocorrect);
         Controls.Add(cb_autocorrect);
         Controls.Add(lbl_disclaimer_header);
@@ -487,7 +566,6 @@ partial class Form1
         Controls.Add(panel1);
         Controls.Add(pnl_1);
         Controls.Add(panel4);
-        FormBorderStyle = FormBorderStyle.SizableToolWindow;
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimumSize = new Size(581, 695);
@@ -548,4 +626,10 @@ partial class Form1
     private Panel panel4;
     private Label lbl_startstop;
     private Button btn_start_stop;
+    private CheckBox cb_onewordmode;
+    private Button btn_phone;
+    private Button btn_medikamente;
+    private Button btn_fachbegriffe;
+    private Button btn_plz;
+    private Button btn_bausteine;
 }
