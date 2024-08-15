@@ -109,7 +109,7 @@ partial class Form1
         // 
         lbl_1_category.BackColor = Color.White;
         lbl_1_category.Dock = DockStyle.Fill;
-        lbl_1_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lbl_1_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_1_category.Location = new Point(0, 0);
         lbl_1_category.Name = "lbl_1_category";
         lbl_1_category.Size = new Size(500, 21);
@@ -121,7 +121,7 @@ partial class Form1
         // 
         lbl_1_explanation.BackColor = Color.White;
         lbl_1_explanation.Dock = DockStyle.Bottom;
-        lbl_1_explanation.Font = new Font("Segoe UI", 9.75F);
+        lbl_1_explanation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         lbl_1_explanation.Location = new Point(50, 56);
         lbl_1_explanation.Name = "lbl_1_explanation";
         lbl_1_explanation.Size = new Size(500, 46);
@@ -132,7 +132,7 @@ partial class Form1
         // 
         lbl_1_main.BackColor = Color.White;
         lbl_1_main.Dock = DockStyle.Top;
-        lbl_1_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+        lbl_1_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_1_main.Location = new Point(50, 3);
         lbl_1_main.Name = "lbl_1_main";
         lbl_1_main.Size = new Size(500, 32);
@@ -144,12 +144,12 @@ partial class Form1
         // 
         lbl_1_button.BackColor = Color.White;
         lbl_1_button.Dock = DockStyle.Left;
-        lbl_1_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lbl_1_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_1_button.Location = new Point(3, 3);
         lbl_1_button.Name = "lbl_1_button";
         lbl_1_button.Size = new Size(47, 99);
         lbl_1_button.TabIndex = 4;
-        lbl_1_button.Text = "F6";
+        lbl_1_button.Text = "F3";
         lbl_1_button.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // panel1
@@ -195,7 +195,7 @@ partial class Form1
         // 
         lbl_2_category.BackColor = Color.White;
         lbl_2_category.Dock = DockStyle.Fill;
-        lbl_2_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+        lbl_2_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_2_category.Location = new Point(0, 0);
         lbl_2_category.Name = "lbl_2_category";
         lbl_2_category.Size = new Size(500, 21);
@@ -207,7 +207,7 @@ partial class Form1
         // 
         lbl_2_explanation.BackColor = Color.White;
         lbl_2_explanation.Dock = DockStyle.Bottom;
-        lbl_2_explanation.Font = new Font("Segoe UI", 9.75F);
+        lbl_2_explanation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         lbl_2_explanation.Location = new Point(50, 56);
         lbl_2_explanation.Name = "lbl_2_explanation";
         lbl_2_explanation.Size = new Size(500, 46);
@@ -218,7 +218,7 @@ partial class Form1
         // 
         lbl_2_main.BackColor = Color.White;
         lbl_2_main.Dock = DockStyle.Top;
-        lbl_2_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+        lbl_2_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_2_main.Location = new Point(50, 3);
         lbl_2_main.Name = "lbl_2_main";
         lbl_2_main.Size = new Size(500, 32);
@@ -230,12 +230,12 @@ partial class Form1
         // 
         lbl_2_button.BackColor = Color.White;
         lbl_2_button.Dock = DockStyle.Left;
-        lbl_2_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold);
+        lbl_2_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_2_button.Location = new Point(3, 3);
         lbl_2_button.Name = "lbl_2_button";
         lbl_2_button.Size = new Size(47, 99);
         lbl_2_button.TabIndex = 4;
-        lbl_2_button.Text = "F7";
+        lbl_2_button.Text = "F4";
         lbl_2_button.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // panel6
@@ -283,7 +283,7 @@ partial class Form1
         // 
         lbl_3_category.BackColor = Color.White;
         lbl_3_category.Dock = DockStyle.Fill;
-        lbl_3_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+        lbl_3_category.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_3_category.Location = new Point(0, 0);
         lbl_3_category.Name = "lbl_3_category";
         lbl_3_category.Size = new Size(500, 21);
@@ -295,7 +295,7 @@ partial class Form1
         // 
         lbl_3_explanation.BackColor = Color.White;
         lbl_3_explanation.Dock = DockStyle.Bottom;
-        lbl_3_explanation.Font = new Font("Segoe UI", 9.75F);
+        lbl_3_explanation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         lbl_3_explanation.Location = new Point(50, 56);
         lbl_3_explanation.Name = "lbl_3_explanation";
         lbl_3_explanation.Size = new Size(500, 46);
@@ -306,7 +306,7 @@ partial class Form1
         // 
         lbl_3_main.BackColor = Color.White;
         lbl_3_main.Dock = DockStyle.Top;
-        lbl_3_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+        lbl_3_main.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_3_main.Location = new Point(50, 3);
         lbl_3_main.Name = "lbl_3_main";
         lbl_3_main.Size = new Size(500, 32);
@@ -318,12 +318,12 @@ partial class Form1
         // 
         lbl_3_button.BackColor = Color.White;
         lbl_3_button.Dock = DockStyle.Left;
-        lbl_3_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold);
+        lbl_3_button.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_3_button.Location = new Point(3, 3);
         lbl_3_button.Name = "lbl_3_button";
         lbl_3_button.Size = new Size(47, 99);
         lbl_3_button.TabIndex = 4;
-        lbl_3_button.Text = "F8";
+        lbl_3_button.Text = "F5";
         lbl_3_button.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // panel9
@@ -341,7 +341,7 @@ partial class Form1
         // 
         lbl_typedword.BackColor = Color.White;
         lbl_typedword.Dock = DockStyle.Fill;
-        lbl_typedword.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        lbl_typedword.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
         lbl_typedword.ForeColor = Color.DarkSlateBlue;
         lbl_typedword.Location = new Point(3, 3);
         lbl_typedword.Name = "lbl_typedword";
@@ -373,7 +373,7 @@ partial class Form1
         // lbl_disclaimer_header
         // 
         lbl_disclaimer_header.Dock = DockStyle.Bottom;
-        lbl_disclaimer_header.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lbl_disclaimer_header.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_disclaimer_header.ForeColor = Color.Maroon;
         lbl_disclaimer_header.Location = new Point(6, 509);
         lbl_disclaimer_header.Name = "lbl_disclaimer_header";
@@ -451,7 +451,7 @@ partial class Form1
         // 
         lbl_startstop.BackColor = Color.FromArgb(128, 255, 128);
         lbl_startstop.Dock = DockStyle.Fill;
-        lbl_startstop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lbl_startstop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
         lbl_startstop.Location = new Point(324, 0);
         lbl_startstop.Name = "lbl_startstop";
         lbl_startstop.Size = new Size(229, 34);
@@ -463,7 +463,7 @@ partial class Form1
         // 
         btn_start_stop.Cursor = Cursors.Hand;
         btn_start_stop.Dock = DockStyle.Left;
-        btn_start_stop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        btn_start_stop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
         btn_start_stop.Location = new Point(0, 0);
         btn_start_stop.Name = "btn_start_stop";
         btn_start_stop.Size = new Size(324, 34);

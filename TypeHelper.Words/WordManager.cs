@@ -112,9 +112,9 @@ public class WordManager
     {
         return key switch
         {
-            Keys.F6 => 1,
-            Keys.F7 => 2,
-            Keys.F8 => 3,
+            Keys.F3 => 1,
+            Keys.F4 => 2,
+            Keys.F5 => 3,
             _ => 0
         };
     }
@@ -174,7 +174,7 @@ public class WordManager
         {
             Keys.Up, Keys.Down, /*Keys.Space,*/ Keys.Insert,
             Keys.Delete, Keys.Tab, Keys.Oemcomma,
-            Keys.OemPeriod, Keys.Enter
+            Keys.OemPeriod, Keys.Enter, Keys.Escape, Keys.LButton, Keys.F2
         };
         if (OneWordMode) { resetKeys.Add(Keys.Space); }
         return resetKeys.Contains(key);

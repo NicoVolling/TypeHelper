@@ -31,7 +31,14 @@ public partial class Form1 : Form
         TextManipulator = new TextManipulator();
         WordListManager = new WordListManager();
 
-        WordListManager.ProcessWords();
+        try
+        {
+            WordListManager.ProcessWords();
+        }
+        catch (DirectoryNotFoundException ex)
+        {
+            return;
+        }
 
         KeyLogger.OnKeyPressed += WordManager.KeyPressed;
         KeyLogger.OnSpecialKeyPressed += WordManager.SpecialKeyPressed;

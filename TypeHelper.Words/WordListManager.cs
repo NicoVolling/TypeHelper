@@ -53,6 +53,13 @@ public class WordListManager
     {
         List<Word> zipDictionary = LoadAndSortWords(ZIP_Dictionary_Path);
         List<Word> wordlists = new List<Word>();
+
+        if (!System.IO.Directory.Exists(WordList_Path))
+        {
+            MessageBox.Show($"Den angegebenen Ordner: \"{WordList_Path}\" konnte nicht gefunden werden.\nDaher kann das Programm nicht starten. Bitte wenden Sie sich an den Administrator.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            throw new DirectoryNotFoundException(WordList_Path);
+        }
+
         foreach (string filename in System.IO.Directory.GetFiles(WordList_Path))
         {
             if (filename.EndsWith(".csv"))
@@ -79,6 +86,12 @@ public class WordListManager
     private List<Word> ReadWordsFromCsv(string filePath, string? category = null)
     {
         List<Word> words = new List<Word>();
+
+        if (!System.IO.File.Exists(filePath))
+        {
+            MessageBox.Show($"Die angegebene Datei: \"{filePath}\" konnte nicht gefunden werden.\nDaher kann das Programm nicht starten. Bitte wenden Sie sich an den Administrator.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return words;
+        }
 
         using (StreamReader reader = new StreamReader(filePath))
         {
